@@ -1,0 +1,40 @@
+Описать тип данных для динамического односвязного кольцевого списка. Найти максимальную серию одинаковых значений
+
+C++:
+
+struct List
+{
+	int Data;
+	*List next;
+};
+
+List *Root = null;
+
+void MaxSerZn(List *Root) // Ищет начало и конец серии одинаковых значений
+{
+	List *curr = Root->next;
+	List *StartSer = null;
+	List *FinishSer = null;
+	
+	int count = 0;
+	int buf = Root->Data;
+	
+	while(curr != Root)
+	{
+		if(curr->Data == buf)
+		{
+			if(count == 0)
+			{
+				StartSer = curr;
+			}
+			count++;
+		}
+		else 
+		{
+			count = 0;
+			FinishSer = curr;
+		}
+		buf = curr->Data;
+		curr = curr->next;
+	}
+}
